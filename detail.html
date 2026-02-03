@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Détails du Livre</title>
+</head>
+<body>
+    <div id="book-details">
+        <p>Chargement des détails...</p>
+    </div>
+    <script>
+        async function fetchBookDetails() {
+            // Récupérer la clé du livre depuis l'URL
+            const params = new URLSearchParams(window.location.search);
+            const key = params.get('key');
+
+            if (!key) {
+                document.getElementById('book-details').innerHTML = '<p>Aucun livre sélectionné.</p>';
+                return;
+            }
+
+            try {
+                // Appeler l'API OpenLibrary pour récupérer les détails du livre
+                const response = await fetch(`https://openlibrary.org${key}.json`);
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des détails du livre');
+                }
+
+                const book = await response.json();
+
+                // Extraire les informations nécessaires
+                const title = book.title || 'Titre inconnu';
+                const description = book.description
+                    ? (typeof book.description === 'string' ? book.description : book.description.value)
+                    : 'Description non disponible';
+                const authors = book.authors
+                    ? await Promise.all(book.authors.map(async (author) => {
+                        const authorResponse = await fetch(`https://openlibrary.org${author.author.key}.json`);
+                        const authorData = await authorResponse.json();
+                        return authorData.name;
+                    }))
+                    : ['Auteur inconnu'];
+
+                // Afficher les informations dans la page
+                document.getElementById('book-details').innerHTML = `
+                    <h1>${title}</h1>
+                    <p><strong>Auteur(s):</strong> ${authors.join(', ')}</p>
+                    <p><strong>Description:</strong> ${description}</p>
+                `;
+            } catch (error) {
+                document.getElementById('book-details').innerHTML = '<p>Erreur: ' + error.message + '</p>';
+            }
+        }
+
+        // Appeler la fonction pour récupérer et afficher les détails
+        fetchBookDetails();
+    </script>
+</body>
+</html>
