@@ -2,15 +2,20 @@
 <html lang="fr">
 <head>
     <title>Médiathèque</title>
+    <link rel="stylesheet" href="./mediatheque.css"> <!-- Chemin corrigé -->
 </head>
 <body>
-    <div>    
+    <div class="search-container">    
         <label for="query">Recherche</label>
         <input type="text" id="query" placeholder="Rechercher un livre" />
         <button id="searchBtn">Rechercher</button>
         <div class="hint"></div>
     </div>
-    
+
+    <div class="results-container">
+        <label>Résultat:</label>
+        <div class="hint"></div>
+    </div>
     <script src="mediatheque.js"></script>
 </body>
 </html>
