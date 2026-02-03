@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./mediatheque.css"> <!-- Chemin corrigé -->
 </head>
 <body>
+    <img src="./logo.png" alt="Logo" class="logo">
     <div class="search-container">    
         <label for="query">Recherche</label>
         <input type="text" id="query" placeholder="Rechercher un livre" />

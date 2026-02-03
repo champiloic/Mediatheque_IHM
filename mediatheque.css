@@ -84,3 +84,13 @@ input[type="text"] {
     font-weight: bold; /* Texte en gras */
     color: #007bff; /* Couleur bleue pour les liens */
 }
+
+/* Logo */
+.logo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    width: 150px; /* Adjust size as needed */
+    height: auto;
+}
