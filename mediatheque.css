@@ -1,0 +1,86 @@
+/* Style général */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eaeaea; /* Couleur de fond mise à jour */
+    color: #222; /* Couleur du texte mise à jour */
+}
+
+/* Conteneur principal */
+div {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 10px;
+    background-color: #fff; /* Fond blanc pour le conteneur */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+/* Champ de recherche */
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #444; /* Couleur du texte */
+}
+
+input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #bbb; /* Bordure plus visible */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Fond clair */
+}
+
+/* Résultats */
+.hint {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 10px; /* Espacement interne */
+}
+
+/* Carte de livre */
+.hint div {
+    background: #fff;
+    border: 1px solid #ccc; /* Bordure plus claire */
+    border-radius: 8px;
+    padding: 15px; /* Espacement interne augmenté */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hint div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Titre du livre */
+.hint div p {
+    font-size: 16px; /* Taille de police augmentée */
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333; /* Couleur plus foncée */
+}
+
+/* Image de couverture */
+.hint div img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* Espacement sous l'image */
+}
+
+/* Lien */
+.hint div a {
+    text-decoration: none;
+    font-weight: bold; /* Texte en gras */
+    color: #007bff; /* Couleur bleue pour les liens */
+}

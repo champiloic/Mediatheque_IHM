@@ -2,16 +2,17 @@
 <html lang="fr">
 <head>
     <title>Médiathèque</title>
+    <link rel="stylesheet" href="./mediatheque.css"> <!-- Chemin corrigé -->
 </head>
 <body>
-    <div>    
+    <div class="search-container">    
         <label for="query">Recherche</label>
-        <input id="query" name="query" type="text" />
+        <input id="query" name="query" type="text" placeholder="Recherchez un livre..." />
     </div>
 
-    <div>
+    <div class="results-container">
         <label>Résultat:</label>
-        <p class="hint"></p>
+        <div class="hint"></div>
     </div>
     <script src="mediatheque.js"></script>
 </body>
