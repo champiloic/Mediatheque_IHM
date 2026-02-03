@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Médiathèque</title>
+</head>
+<body>
+    <div>    
+        <label for="query">Recherche</label>
+        <input id="query" name="query" type="text" />
+    </div>
+
+    <div>
+        <label>Résultat:</label>
+        <p class="hint"></p>
+    </div>
+    <script src="mediatheque.js"></script>
+</body>
+</html>
