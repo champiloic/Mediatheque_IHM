@@ -1,5 +1,5 @@
-document.getElementById('query').addEventListener('input', async function () {
-    const query = this.value;
+document.getElementById('searchBtn').addEventListener('click', async function () {
+    const query = document.getElementById('query').value;
     const resultElement = document.querySelector('.hint');
 
     if (query.trim() === '') {

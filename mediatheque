@@ -6,13 +6,11 @@
 <body>
     <div>    
         <label for="query">Recherche</label>
-        <input id="query" name="query" type="text" />
+        <input type="text" id="query" placeholder="Rechercher un livre" />
+        <button id="searchBtn">Rechercher</button>
+        <div class="hint"></div>
     </div>
-
-    <div>
-        <label>Résultat:</label>
-        <p class="hint"></p>
-    </div>
+    
     <script src="mediatheque.js"></script>
 </body>
 </html>
