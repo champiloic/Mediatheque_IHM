@@ -9,6 +9,10 @@
     <div id="book-details">
         <p>Chargement des détails...</p>
     </div>
+    <div id="add-to-list-container">
+        <button id="addToListBtn">A lire</button>
+        <select id="userLists" style="display: none;"></select>
+    </div>
     <script>
         async function fetchBookDetails() {
             // Récupérer la clé du livre depuis l'URL
@@ -52,6 +56,67 @@
                 document.getElementById('book-details').innerHTML = '<p>Erreur: ' + error.message + '</p>';
             }
         }
+
+        async function fetchUserLists() {
+            const username = localStorage.getItem('username');
+            if (!username) {
+                alert('Veuillez vous connecter pour accéder à vos listes.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://openlibrary.org/people/${username}/lists.json`);
+                if (!response.ok) {
+                    throw new Error('Erreur lors de la récupération des listes');
+                }
+                const data = await response.json();
+                const lists = data.entries;
+
+                const select = document.getElementById('userLists');
+                select.innerHTML = lists.map(list => `<option value="${list.url}">${list.name}</option>`).join('');
+                select.style.display = 'inline-block';
+            } catch (error) {
+                alert('Erreur: ' + error.message);
+            }
+        }
+
+        async function addToList() {
+            const select = document.getElementById('userLists');
+            const listUrl = select.value;
+            const params = new URLSearchParams(window.location.search);
+            const bookKey = params.get('key');
+
+            if (!listUrl || !bookKey) {
+                alert('Veuillez sélectionner une liste et un livre valide.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://openlibrary.org${listUrl}/seeds`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ add: [{ key: bookKey }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erreur lors de l\'ajout du livre à la liste');
+                }
+
+                alert('Livre ajouté à la liste avec succès !');
+            } catch (error) {
+                alert('Erreur: ' + error.message);
+            }
+        }
+
+        document.getElementById('addToListBtn').addEventListener('click', () => {
+            const select = document.getElementById('userLists');
+            if (select.style.display === 'none') {
+                fetchUserLists();
+            } else {
+                addToList();
+            }
+        });
 
         // Appeler la fonction pour récupérer et afficher les détails
         fetchBookDetails();
