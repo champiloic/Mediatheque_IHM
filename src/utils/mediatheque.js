@@ -15,7 +15,14 @@ document.getElementById('searchBtn').addEventListener('click', async function ()
 
         const data = await response.json();
         const totalResults = data.num_found;
-        resultElement.innerHTML = `<p>Nombre de résultats : ${totalResults}</p>`;
+        document.getElementById('result-count').innerText = `Nombre de résultats : ${totalResults}`;
+        const resultCountEl = document.getElementById('result-count');
+        if (totalResults > 0) {
+            resultCountEl.innerText = `Nombre de résultats : ${totalResults}`;
+            resultCountEl.classList.remove('hidden');
+        } else {
+            resultCountEl.classList.add('hidden');
+        }
         const books = data.docs.slice(0, 20).map(book => {
             const title = book.title;
             const coverId = book.cover_i;
@@ -28,8 +35,9 @@ document.getElementById('searchBtn').addEventListener('click', async function ()
                                       </a>` : ''}
                     </div>`;
         }).join('');
-        resultElement.innerHTML += books || '<p>Aucun résultat trouvé.</p>';
+        resultElement.innerHTML = books || '<p>Aucun résultat trouvé.</p>';
     } catch (error) {
+        document.getElementById('result-count').innerText = '';
         resultElement.innerHTML = '<p>Erreur: ' + error.message + '</p>';
     }
 });
