@@ -11,11 +11,6 @@
         <button id="searchBtn">Rechercher</button>
         <div class="hint"></div>
     </div>
-
-    <div class="results-container">
-        <label>Résultat:</label>
-        <div class="hint"></div>
-    </div>
     <script src="mediatheque.js"></script>
 </body>
 </html>

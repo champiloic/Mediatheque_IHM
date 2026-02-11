@@ -14,20 +14,22 @@ document.getElementById('searchBtn').addEventListener('click', async function ()
         }
 
         const data = await response.json();
-        const books = data.docs.slice(0, 5).map(book => {
+        const totalResults = data.num_found;
+        resultElement.innerHTML = `<p>Nombre de résultats : ${totalResults}</p>`;
+        const books = data.docs.slice(0, 17000).map(book => {
             const title = book.title;
             const coverId = book.cover_i;
             const key = book.key;
             const coverImg = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : '';
             return `<div>
                         <p>${title}</p>
-                        ${coverImg ? `<a href="./detail.html?key=${key}" target="_blank">
+                        ${coverImg ? `<a href="./detail.html?key=${key}">
                                         <img src="${coverImg}" alt="${title}" />
                                       </a>` : ''}
                     </div>`;
         }).join('');
-        resultElement.innerHTML = books || '<p>Aucun résultat trouvé.</p>';
+        resultElement.innerHTML += books || '<p>Aucun résultat trouvé.</p>';
     } catch (error) {
         resultElement.innerHTML = '<p>Erreur: ' + error.message + '</p>';
     }
-});
+});     
