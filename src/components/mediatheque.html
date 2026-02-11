@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <title>Médiathèque</title>
-    <link rel="stylesheet" href="./mediatheque.css">
+    <link rel="stylesheet" href="../styles/mediatheque.css">
     <style>
         .top-right-buttons {
             position: absolute;
@@ -16,16 +16,16 @@
 </head>
 <body>
     <div class="top-right-buttons">
-        <button onclick="window.location.href='signup.html'">S'inscrire</button>
-        <button onclick="window.location.href='login.html'">Se connecter</button>
+        <button onclick="window.location.href='./signup.html'">S'inscrire</button>
+        <button onclick="window.location.href='./login.html'">Se connecter</button>
     </div>
-    <img src="./logo.png" alt="Logo" class="logo">
+    <img src="../../assets/logo.png" alt="Logo" class="logo">
     <div class="search-container">    
         <label for="query">Recherche</label>
         <input type="text" id="query" placeholder="Rechercher un livre" />
         <button id="searchBtn">Rechercher</button>
         <div class="hint"></div>
     </div>
-    <script src="mediatheque.js"></script>
+    <script src="../utils/mediatheque.js"></script>
 </body>
 </html>

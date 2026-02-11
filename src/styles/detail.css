@@ -14,6 +14,7 @@ body {
     z-index: 1000;
     width: 150px; /* Adjust size as needed */
     height: auto;
+    background-image: url('../assets/logo.png');
 }
 
 /* Container for book details */

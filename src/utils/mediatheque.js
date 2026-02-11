@@ -22,8 +22,8 @@ document.getElementById('searchBtn').addEventListener('click', async function ()
             const key = book.key;
             const coverImg = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : '';
             return `<div>
-                        <a href="./detail.html?key=${key}" ><p>${title}</p>
-                        ${coverImg ? `<a href="./detail.html?key=${key}" >
+                        <a href="../components/detail.html?key=${key}" ><p>${title}</p>
+                        ${coverImg ? `<a href="../components/detail.html?key=${key}" >
                                         <img src="${coverImg}" alt="${title}" />
                                       </a>` : ''}
                     </div>`;
@@ -32,4 +32,4 @@ document.getElementById('searchBtn').addEventListener('click', async function ()
     } catch (error) {
         resultElement.innerHTML = '<p>Erreur: ' + error.message + '</p>';
     }
-});     
+});

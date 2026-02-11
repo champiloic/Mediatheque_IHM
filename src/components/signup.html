@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <title>Inscription</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -15,7 +15,7 @@
             <button type="submit">S'inscrire</button>
         </form>
     </div>
-    <script src="database.js"></script>
+    <script src="../utils/database.js"></script>
     <script>
         document.getElementById('signupForm').addEventListener('submit', (event) => {
             event.preventDefault();
@@ -24,13 +24,13 @@
 
             if (userExists(username)) {
                 alert('Nom d\'utilisateur déjà pris. Veuillez vous connecter.');
-                window.location.href = 'login.html';
+                window.location.href = './login.html';
             } else {
                 if (addUser(username, password)) {
                     alert('Inscription réussie !');
                     // Save current user and redirect to profile
                     localStorage.setItem('currentUser', JSON.stringify({ username }));
-                    window.location.href = 'profile.html';
+                    window.location.href = './profile.html';
                 }
             }
         });
