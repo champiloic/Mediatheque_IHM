@@ -23,7 +23,7 @@ document.getElementById('searchBtn').addEventListener('click', async function ()
             const coverImg = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg` : '';
             return `<div>
                         <p>${title}</p>
-                        ${coverImg ? `<a href="./detail.html?key=${key}">
+                        ${coverImg ? `<a href="./detail.html?key=${key}" >
                                         <img src="${coverImg}" alt="${title}" />
                                       </a>` : ''}
                     </div>`;

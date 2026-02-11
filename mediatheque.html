@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Médiathèque</title>
+    <link rel="stylesheet" href="./mediatheque.css"> <!-- Chemin corrigé -->
+    <style>
+        .top-right-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .top-right-buttons button {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-right-buttons">
+        <button onclick="window.location.href='signup.html'">S'inscrire</button>
+        <button onclick="window.location.href='login.html'">Se connecter</button>
+    </div>
+    <img src="./logo.png" alt="Logo" class="logo">
+    <div class="search-container">    
+        <label for="query">Recherche</label>
+        <input type="text" id="query" placeholder="Rechercher un livre" />
+        <button id="searchBtn">Rechercher</button>
+        <div class="hint"></div>
+    </div>
+    <script src="mediatheque.js"></script>
+</body>
+</html>

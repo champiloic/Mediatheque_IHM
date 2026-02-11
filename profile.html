@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Profil</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profil</h1>
+        <p id="usernameDisplay">Nom d'utilisateur : <span id="username"></span></p>
+    </div>
+    <script src="database.js"></script>
+    <script>
+        // Fetch the current user from IndexedDB
+        async function displayUsername() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                alert('Veuillez vous inscrire ou vous connecter.');
+                window.location.href = 'signup.html';
+            } else {
+                document.getElementById('username').textContent = currentUser.username;
+            }
+        }
+
+        // Call the function to display the username
+        displayUsername();
+    </script>
+</body>
+</html>
