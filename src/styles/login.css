@@ -1,10 +1,10 @@
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 10px; /* Ajout d'un espacement pour éviter les débordements */
     background-color: #f4f4f9;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -12,11 +12,13 @@ body {
 
 .login-container {
     background: #fff;
-    padding: 20px;
+    padding: 5%; /* Espacement interne relatif */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: 90%; /* Largeur relative */
+    max-width: 300px;
+    font-size: 1rem; /* Taille de police relative */
 }
 
 .login-container h1 {
@@ -33,20 +35,21 @@ body {
 
 .login-container input {
     width: 100%;
-    padding: 10px;
+    padding: 1%; /* Espacement interne relatif */
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1rem; /* Taille de police relative */
 }
 
 .login-container button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 1%; /* Espacement interne relatif */
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem; /* Taille de police relative */
 }
 
 .login-container button:hover {

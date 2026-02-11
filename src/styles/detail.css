@@ -3,7 +3,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background: url('../../assets/fond.avif') no-repeat center center fixed; /* Image de fond */
+    background-size: cover; /* Couvrir toute la fenêtre */
+    image-rendering: crisp-edges; /* Améliorer la netteté */
+    image-rendering: -webkit-optimize-contrast; /* Optimisation pour certains navigateurs */
     color: #333;
 }
 
@@ -12,16 +15,19 @@ body {
     top: 10px;
     left: 10px;
     z-index: 1000;
-    width: 150px; /* Adjust size as needed */
+    width: 10vw; /* Largeur relative à la fenêtre */
+    max-width: 150px; /* Taille maximale */
     height: auto;
-    background-image: url('../assets/logo.png');
+    background-image: url('../../assets/logo.png');
 }
 
 /* Container for book details */
 #book-details {
+    width: 90%; /* Largeur relative */
     max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
+    margin: 5vh auto; /* Espacement vertical relatif */
+    padding: 2%; /* Espacement interne relatif */
+    font-size: 1rem; /* Taille de police relative */
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -29,7 +35,7 @@ body {
 
 /* Title styling */
 #book-details h1 {
-    font-size: 2em;
+    font-size: 2vw; /* Taille de police relative à la largeur de la fenêtre */
     margin-bottom: 20px;
     color: #2c3e50;
 }
@@ -59,10 +65,10 @@ body {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 1%; /* Espacement interne relatif */
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem; /* Taille de police relative */
     transition: background-color 0.3s;
 }
 
@@ -76,4 +82,28 @@ body {
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Boutons d'authentification en haut à droite */
+.auth-buttons-top {
+    position: fixed; /* Fixer les boutons par rapport à la fenêtre */
+    top: 10px;
+    right: 1px;
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons-top button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 1%; /* Espacement interne relatif */
+    font-size: 0.9rem; /* Taille de police relative */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.auth-buttons-top button:hover {
+    background-color: #0056b3;
 }

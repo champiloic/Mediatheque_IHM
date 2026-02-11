@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-    <img src="../assets/logo.png" alt="Logo" class="logo">
+    <img src="../../assets/logo.png" alt="Logo" class="logo">
     <div id="book-details">
         <p>Chargement des détails...</p>
     </div>
@@ -27,6 +27,7 @@
         <button id="addToListBtn">A lire</button>
         <select id="userLists" style="display: none;"></select>
     </div>
+    <script src="../utils/db2rest.js"></script>
     <script>
         async function fetchBookDetails() {
             // Récupérer la clé du livre depuis l'URL
@@ -81,6 +82,31 @@
                 document.getElementById('book-details').innerHTML = '<p>Erreur lors de la récupération des détails du livre.</p>';
             }
         }
+
+        document.getElementById('addToListBtn').addEventListener('click', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const key = params.get('key');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+            const bookDetails = {
+                key,
+                title: document.querySelector('.book-info h1').textContent,
+                userId: currentUser.username
+            };
+
+            try {
+                const result = await saveBookToDB2Rest(bookDetails);
+                if (result) {
+                    alert('Livre ajouté à votre liste de lecture.');
+                } else {
+                    alert('Échec de l\'ajout du livre. Veuillez réessayer.');
+                }
+            } catch (error) {
+                console.error('Erreur:', error);
+                alert('Une erreur est survenue. Veuillez réessayer.');
+            }
+        });
+
         // Appeler la fonction pour récupérer les détails du livre
         fetchBookDetails();
     </script>

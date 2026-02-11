@@ -7,23 +7,33 @@
 <body>
     <div class="profile-container">
         <h1>Profil</h1>
+        <button onclick="window.location.href='./mediatheque.html'">Accueil</button>
         <p id="usernameDisplay">Nom d'utilisateur : <span id="username"></span></p>
     </div>
-    <script src="../utils/database.js"></script>
+    <div class="reading-list-container">
+        <h2>Liste de livres à lire</h2>
+        <ul id="readingList"></ul>
+    </div>
+    <script src="../utils/db2rest.js"></script>
     <script>
-        // Fetch the current user from IndexedDB
-        async function displayUsername() {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            if (!currentUser) {
-                alert('Veuillez vous inscrire ou vous connecter.');
-                window.location.href = './signup.html';
-            } else {
-                document.getElementById('username').textContent = currentUser.username;
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        document.getElementById('username').textContent = currentUser.username;
+
+        async function displayReadingList() {
+            try {
+                const readingList = await fetchReadingList(currentUser.username);
+                const listElement = document.getElementById('readingList');
+                listElement.innerHTML = readingList.map(book => `
+                    <li>
+                        <strong>${book.title}</strong> (ID: ${book.key})
+                    </li>
+                `).join('');
+            } catch (error) {
+                console.error('Erreur lors de l\'affichage de la liste de lecture:', error);
             }
         }
 
-        // Call the function to display the username
-        displayUsername();
+        displayReadingList();
     </script>
 </body>
 </html>

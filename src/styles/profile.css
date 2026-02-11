@@ -6,9 +6,14 @@ body {
 }
 
 .profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer le contenu horizontalement */
+    width: 90%; /* Largeur relative */
     max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
+    margin: 5vh auto; /* Espacement vertical relatif */
+    padding: 2%; /* Espacement interne relatif */
+    font-size: 1rem; /* Taille de police relative */
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -24,14 +29,21 @@ h1, h2 {
 }
 
 ul {
+    display: flex;
+    flex-wrap: wrap; /* Permettre aux éléments de s'adapter */
+    gap: 10px; /* Espacement entre les éléments */
+    justify-content: center; /* Centrer les éléments */
     list-style-type: none;
     padding: 0;
 }
 
 ul li {
+    flex: 1 1 calc(50% - 10px); /* Largeur relative avec espacement */
+    box-sizing: border-box; /* Inclure les bordures dans le calcul */
     background: #f9f9f9;
     margin: 10px 0;
-    padding: 10px;
+    padding: 1%; /* Espacement interne relatif */
+    font-size: 0.9rem; /* Taille de police relative */
     border: 1px solid #ddd;
     border-radius: 4px;
 }
