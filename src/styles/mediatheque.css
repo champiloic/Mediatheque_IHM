@@ -120,6 +120,20 @@ input[type="text"] {
     background-color: #0056b3;
 }
 
+.result-count-box {
+    display: inline-block; /* Pour que l'élément s'ajuste à la taille du contenu */
+    padding: 10px 20px; /* Espacement intérieur */
+    border: 2px solid #039719; /* Couleur de la bordure, vous pouvez changer */
+    border-radius: 8px; /* Coins arrondis */
+    background-color: hsl(110, 91%, 87%); /* Couleur de fond douce, optionnel */
+    margin: 20px auto; /* Centrer horizontalement si en block ou inline-block */
+    text-align: center; /* Pour centrer le texte à l'intérieur */
+}
+
+.hidden {
+    display: none;
+}
+
 /* Adaptation pour les petits écrans */
 @media (max-width: 600px) {
     .auth-buttons-top {
