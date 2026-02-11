@@ -3,6 +3,20 @@
 <head>
     <title>Détails du Livre</title>
     <link rel="stylesheet" href="detail.css">
+    <style>
+        #book-details {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .book-cover {
+            max-width: 200px;
+            height: auto;
+        }
+        .book-info {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
     <img src="./logo.png" alt="Logo" class="logo">
@@ -46,79 +60,28 @@
                     }))
                     : ['Auteur inconnu'];
 
+                const coverImage = book.covers ? `https://covers.openlibrary.org/b/id/${book.covers[0]}-L.jpg` : './placeholder.png';
+
+                // Fetch availability information
+                const availabilityResponse = await fetch(`https://openlibrary.org${key}/availability.json`);
+                const availabilityData = availabilityResponse.ok ? await availabilityResponse.json() : null;
+                const availability = availabilityData && availabilityData.status === 'available' ? 'Disponible' : 'Non disponible';
+
                 // Afficher les informations dans la page
                 document.getElementById('book-details').innerHTML = `
-                    <h1>${title}</h1>
-                    <p><strong>Auteur(s):</strong> ${authors.join(', ')}</p>
-                    <p><strong>Description:</strong> ${description}</p>
+                    <img src="${coverImage}" alt="Couverture du livre" class="book-cover">
+                    <div class="book-info">
+                        <h1>${title}</h1>
+                        <p><strong>Auteur(s):</strong> ${authors.join(', ')}</p>
+                        <p><strong>Description:</strong> ${description}</p>
+                        <p><strong>Disponibilité:</strong> ${availability}</p>
+                    </div>
                 `;
             } catch (error) {
-                document.getElementById('book-details').innerHTML = '<p>Erreur: ' + error.message + '</p>';
+                document.getElementById('book-details').innerHTML = '<p>Erreur lors de la récupération des détails du livre.</p>';
             }
         }
-
-        async function fetchUserLists() {
-            const username = localStorage.getItem('username');
-            if (!username) {
-                alert('Veuillez vous connecter pour accéder à vos listes.');
-                window.location.href = 'login.html';
-                return;
-            }
-
-            try {
-                const response = await fetch(`http://openlibrary.org/people/${username}/lists.json`);
-                if (!response.ok) {
-                    throw new Error('Erreur lors de la récupération des listes');
-                }
-                const data = await response.json();
-                const lists = data.entries;
-
-                const select = document.getElementById('userLists');
-                select.innerHTML = lists.map(list => `<option value="${list.url}">${list.name}</option>`).join('');
-                select.style.display = 'inline-block';
-            } catch (error) {
-                alert('Erreur: ' + error.message);
-            }
-        }
-
-        async function addToList() {
-            const select = document.getElementById('userLists');
-            const listUrl = select.value;
-            const params = new URLSearchParams(window.location.search);
-            const bookKey = params.get('key');
-
-            if (!listUrl || !bookKey) {
-                alert('Veuillez sélectionner une liste et un livre valide.');
-                return;
-            }
-
-            try {
-                const response = await fetch(`http://openlibrary.org${listUrl}/seeds`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ add: [{ key: bookKey }] })
-                });
-
-                if (!response.ok) {
-                    throw new Error('Erreur lors de l\'ajout du livre à la liste');
-                }
-
-                alert('Livre ajouté à la liste avec succès !');
-            } catch (error) {
-                alert('Erreur: ' + error.message);
-            }
-        }
-
-        document.getElementById('addToListBtn').addEventListener('click', () => {
-            const select = document.getElementById('userLists');
-            if (select.style.display === 'none') {
-                fetchUserLists();
-            } else {
-                addToList();
-            }
-        });
-
-        // Appeler la fonction pour récupérer et afficher les détails
+        // Appeler la fonction pour récupérer les détails du livre
         fetchBookDetails();
     </script>
 </body>
