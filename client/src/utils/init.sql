@@ -1,4 +1,3 @@
-
 -- Create the users table
 CREATE TABLE IF NOT EXISTS users (
     username TEXT PRIMARY KEY,

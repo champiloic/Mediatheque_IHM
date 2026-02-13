@@ -83,3 +83,7 @@ Ce projet est une application web de mediatheque permettant aux utilisateurs de 
 ### Consultation du profile + liste de lecture
 
 - Lors de la visualisation du detail, clic sur "A lire" pour sauvegarder le livre dans la base
+
+### Dêpot Git de la partie serveur
+
+- https://github.com/Airtable/airtable.js

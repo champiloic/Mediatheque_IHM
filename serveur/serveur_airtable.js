@@ -32,5 +32,5 @@ app.get('/api/livres', (req, res) => {
 
 // Démarrer le serveur
 app.listen(PORT, () => {
-    console.log(`Serveur Airtable lancé sur le port ${PORT}`);
+    console.log(`Serveur Airtable lancé sur le port ${PORT}`)
 });
